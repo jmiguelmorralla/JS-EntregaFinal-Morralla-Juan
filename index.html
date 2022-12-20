@@ -11,19 +11,37 @@
   <!-- MENU DE NAVEGACIÓN -->
   <nav class="navbar bg-light">
     <div class="container">
-      <span class="navbar-brand mb-0 h1"><img src="img/Logo Vitonio.png" style="max-height: 150px;" alt="Logo Vitonio"></span>
+      <span class="navbar-brand mb-0 h1"><img src="img/Logo Vitonio.png" style="max-height: 110px;" alt="Logo Vitonio"></span>
       <button type="button" class="btn btn-primary">
         Carrito <span class="badge text-bg-secondary">4</span>
       </button>
     </div>
   </nav>
+  <div class="container">
+    <div class="container">
+      <h2>Datos de comprador</h2>
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label"
+        >Nombre y Apellido</label>
+      <input type="text" class="form-control" id="formGroupExampleInput"/>
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput" class="form-label">Condición frente al IVA</label>
+      <input type="text" class="form-control" id="formGroupExampleInput"/>
+    </div>
+    <div class="mb-3">
+      <label for="formGroupExampleInput2" class="form-label">Correo Electrónico</label>
+      <input type="text" class="form-control" id="formGroupExampleInput2"/>
+    </div>
+  </div>
   <!-- CONTENEDOR DE PRODUCTOS -->
   <div class="container-products">
     <div class="row">
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Producto 1</h5>
+            <h5 class="card-title">Balancín</h5>
             <p class="card-text">Descripcion del producto</p>
             <a href="#" class="btn btn-primary">Agregar</a>
           </div>
@@ -32,7 +50,7 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Producto 2</h5>
+            <h5 class="card-title">Arcoiris</h5>
             <p class="card-text">Descripcion del producto</p>
             <a href="#" class="btn btn-primary">Agregar</a>
           </div>
@@ -41,7 +59,34 @@
       <div class="col">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Producto 3</h5>
+            <h5 class="card-title">Casita</h5>
+            <p class="card-text">Descripcion del producto</p>
+            <a href="#" class="btn btn-primary">Agregar</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Rompecabezas</h5>
+            <p class="card-text">Descripcion del producto</p>
+            <a href="#" class="btn btn-primary">Agregar</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Torre</h5>
+            <p class="card-text">Descripcion del producto</p>
+            <a href="#" class="btn btn-primary">Agregar</a>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Luna</h5>
             <p class="card-text">Descripcion del producto</p>
             <a href="#" class="btn btn-primary">Agregar</a>
           </div>
@@ -54,23 +99,20 @@
     <div class="container">
       <h2>FORMULARIO DE CONTACTO</h2>
     </div>
-    <div class="mb-3">
-      <label for="formGroupExampleInput" class="form-label"
-        >Nombre y Apellido</label
-      >
-      <input type="text" class="form-control" id="formGroupExampleInput" />
-    </div>
-    <div class="mb-3">
-      <label for="formGroupExampleInput2" class="form-label"
-        >Correo Electrónico</label
-      >
-      <input type="text" class="form-control" id="formGroupExampleInput2" />
-    </div>
-    <button type="button" class="btn btn-outline-success">
-      Enviar información
-    </button>
+    <form id="formulario" action="/redireccion">
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label">Nombre y Apellido</label>
+        <input type="text" class="form-control" id="nombre">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput2"   class="form-label">Correo Electrónico</label>
+        <input type="text" class="form-control" id="mail">
+      </div>
+      <button type="submit" class="btn btn-outline-success">Enviar información</button>
+    </form>
   </div>
   <!-- SCRIPTS -->
+
   <script src="scripts/script.js"></script>
 </body>
 <footer>
