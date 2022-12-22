@@ -147,6 +147,7 @@ else {
 
 const formulario = document.querySelector("#formulario");
 const nombre = document.querySelector("#nombre");
+const apellido = document.querySelector("#apellido");
 const mail = document.querySelector("#mail");
 const iva = document.querySelector("#iva");
 
@@ -155,11 +156,53 @@ formulario.addEventListener("submit", registrar)
 function registrar(e) {
     e.preventDefault();
     localStorage.setItem("Nombre", nombre.value);
+    localStorage.setItem("Apellido", apellido.value);
     localStorage.setItem("Correo", mail.value);
     localStorage.setItem("RI", iva.value);
 
 }
 
+//Función constructora de cliente
+
+class crearCliente {
+    constructor(nombre, apellido, correo,condicionIva) {
+        this.nombre = nombre.toUpperCase();
+        this.apellido = apellido.toUpperCase();
+        this.correo = correo.toLowerCase();
+        this.condicionIva = condicionIva;
+    }
+}
+
+//Creación de cliente.
+
+const cliente1 = new crearCliente (localStorage.getItem("Nombre"), localStorage.getItem("Apellido"), localStorage.getItem("Correo"), localStorage.getItem("RI"));
+
+
+//Constructor de productos.
+
+class crearProducto {
+    constructor(nombre, marca, origen, material, precio, disponibilidad) {
+        this.nombre = nombre;
+        this.marca = marca;
+        this.origen = origen;
+        this.material = material;
+        this.precio = precio;
+        this.disponibilidad = disponibilidad;
+
+        this.caption = function () {
+            console.log(`${(this.nombre)} es un producto de primera calidad. La marca ${this.marca} presta mucha atención a las teminaciones, especialmente cuando el producto es de ${this.material}.`);
+        };
+    }
+}
+
+//Creación de productos.
+
+const balancin = new crearProducto ("Balancin", "Juguetes Olsen", "Argentina", "Madera", 12000, true);
+const arcoiris = new crearProducto ("Arcoiris", "Juguetes Olsen", "Argentina", "Madera", 7000, true);
+const casita = new crearProducto ("Casita", "Confiture", "Argentina", "Madera", 4500, true);
+const rompecabezas = new crearProducto ("Rompecabezas", "Tak Tak","Argentina", "Madera", 3000, false);
+const torre = new crearProducto ("Torre de Encastre", "Juguetes Olsen", "Argentina", "Madera", 2900, true);
+const luna = new crearProducto ("Luna Equilibrista", "Confiture", "Argentina", "Madera", 5900, true);
 
 // DATOS DEL COMPRADOR
 // const formulario = document.querySelector("#formulario");
