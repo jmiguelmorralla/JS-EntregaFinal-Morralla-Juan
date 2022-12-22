@@ -144,25 +144,42 @@ else {
 }
 */
 
+
 const formulario = document.querySelector("#formulario");
 const nombre = document.querySelector("#nombre");
-const correo = document.querySelector("#mail");
+const mail = document.querySelector("#mail");
+const iva = document.querySelector("#iva");
 
-formulario.addEventListener("submit", validarFormulario);
+formulario.addEventListener("submit", registrar)
 
-function validarFormulario(e) {
+function registrar(e) {
     e.preventDefault();
-    console.log(`Nombre: ${nombre.value}`);
-    console.log(`Correo: ${correo.value}`);
-    let dato1 = document.createElement("h2")
-    dato1.innerHTML=`${nombre.value}`;
-    document.body.appendChild(dato1);
-    let dato2 = document.createElement("h4")
-    dato2.innerHTML=`${correo.value}`;
-    document.body.appendChild(dato2);
-};
+    localStorage.setItem("Nombre", nombre.value);
+    localStorage.setItem("Correo", mail.value);
+    localStorage.setItem("RI", iva.value);
 
-console.log(nombre);
+}
+
+
+// DATOS DEL COMPRADOR
+// const formulario = document.querySelector("#formulario");
+// const nombre = document.querySelector("#nombre");
+// const correo = document.querySelector("#mail");
+
+// formulario.addEventListener("submit", validarFormulario);
+
+// function validarFormulario(e) {
+//     e.preventDefault();
+
+//     let dato1 = document.createElement("h2")
+//     dato1.innerHTML=`${nombre.value}`;
+//     document.body.appendChild(dato1);
+
+//     let dato2 = document.createElement("h4")
+//     dato2.innerHTML=`${correo.value}`;
+//     document.body.appendChild(dato2);
+// };
+
 
 
 
