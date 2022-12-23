@@ -151,6 +151,10 @@ const apellido = document.querySelector("#apellido");
 const mail = document.querySelector("#mail");
 const iva = document.querySelector("#iva");
 
+const botonCliente = document.querySelector("#botonCliente");
+const espacioCliente = document.querySelector("#espacioCliente");
+
+
 formulario.addEventListener("submit", registrar)
 
 function registrar(e) {
@@ -159,7 +163,6 @@ function registrar(e) {
     localStorage.setItem("Apellido", apellido.value);
     localStorage.setItem("Correo", mail.value);
     localStorage.setItem("RI", iva.value);
-
 }
 
 //Función constructora de cliente
@@ -176,6 +179,13 @@ class crearCliente {
 //Creación de cliente.
 
 const cliente1 = new crearCliente (localStorage.getItem("Nombre"), localStorage.getItem("Apellido"), localStorage.getItem("Correo"), localStorage.getItem("RI"));
+
+// Mostrar información del cliente
+
+botonCliente.addEventListener("click", function (e) {
+    e.preventDefault();
+    espacioCliente.innerHTML = `<h4> Sus datos registrados son: </h4> <br> <h6>Nombre: ${localStorage.getItem("Nombre")}. <br> Apellido: ${localStorage.getItem("Apellido")}. <br> Correo: ${localStorage.getItem("Correo")}.</h6>`;
+});
 
 
 //Constructor de productos.

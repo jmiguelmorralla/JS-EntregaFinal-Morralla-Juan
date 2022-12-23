@@ -9,11 +9,11 @@
 </head>
 <body>
   <!-- MENU DE NAVEGACIÓN -->
-  <nav class="navbar bg-light">
+  <nav class="navbar">
     <div class="container">
-      <span class="navbar-brand mb-0 h1"><img src="img/Logo Vitonio.png" style="max-height: 110px;" alt="Logo Vitonio"></span>
-      <button type="button" class="btn btn-primary">
-        Carrito <span class="badge text-bg-secondary">4</span>
+      <span class="navbar-brand"><img src="img/Logo Vitonio.png" style="max-height: 110px;" alt="Logo Vitonio"></span>
+      <button type="button" class="btn btn-warning">
+        <img src="/img/cart.svg" alt="Carrito" height="30px"> <span class="badge text-bg-warning">+</span>
       </button>
     </div>
   </nav>
@@ -31,13 +31,15 @@
         </div>
         <div class="mb-3">
           <label for="formGroupExampleInput2"   class="form-label">Correo Electrónico</label>
-          <input type="text" class="form-control" id="mail">
+          <input type="email" class="form-control" id="mail">
         </div>
         <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">¿Es Responsable Inscripto en IVA?</label>
-          <input type="text" class="form-control" id="iva"/>
+          <input class="form-check-input" type="checkbox" value="" id="iva">
+          <label class="form-check-label" for="formGroupExampleInput2">
+            Soy Responsable Inscripto en IVA.
+          </label>
         </div>
-        <button type="submit" class="btn btn-outline-success">Enviar datos</button>
+        <button type="submit" class="btn btn-outline-info">Enviar datos</button>
       </form>
     </div>
     
@@ -49,7 +51,7 @@
           <div class="card-body">
             <h5 class="card-title">Balancín</h5>
             <p class="card-text">Descripcion del producto</p>
-            <a href="#" class="btn btn-primary">Agregar</a>
+            <a href="#" class="btn btn-warning">Agregar</a>
           </div>
         </div>
       </div>
@@ -58,7 +60,7 @@
           <div class="card-body">
             <h5 class="card-title">Arcoiris</h5>
             <p class="card-text">Descripcion del producto</p>
-            <a href="#" class="btn btn-primary">Agregar</a>
+            <a href="#" class="btn btn-warning">Agregar</a>
           </div>
         </div>
       </div>
@@ -67,7 +69,7 @@
           <div class="card-body">
             <h5 class="card-title">Casita</h5>
             <p class="card-text">Descripcion del producto</p>
-            <a href="#" class="btn btn-primary">Agregar</a>
+            <a href="#" class="btn btn-warning">Agregar</a>
           </div>
         </div>
       </div>
@@ -76,7 +78,7 @@
           <div class="card-body">
             <h5 class="card-title">Rompecabezas</h5>
             <p class="card-text">Descripcion del producto</p>
-            <a href="#" class="btn btn-primary">Agregar</a>
+            <a href="#" class="btn btn-warning">Agregar</a>
           </div>
         </div>
       </div>
@@ -85,7 +87,7 @@
           <div class="card-body">
             <h5 class="card-title">Torre</h5>
             <p class="card-text">Descripcion del producto</p>
-            <a href="#" class="btn btn-primary">Agregar</a>
+            <a href="#" class="btn btn-warning">Agregar</a>
           </div>
         </div>
       </div>
@@ -94,14 +96,18 @@
           <div class="card-body">
             <h5 class="card-title">Luna</h5>
             <p class="card-text">Descripcion del producto</p>
-            <a href="#" class="btn btn-primary">Agregar</a>
+            <a href="#" class="btn btn-warning">Agregar</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  <div>
+  <!-- ESPACIO CLIENTE -->
+  <div class="container" id="espacioCliente"> 
+    <button type="submit" class="btn btn-outline-info" id="botonCliente">Mostrar cliente</button>
+  </div>
+  <!-- ESPACIO CARRITO -->
+  <div class="container" id="espacioCarrito">
     <h2 id="carrito">Carrito</h2>
     <h5>Vacío</h5>
   </div>
