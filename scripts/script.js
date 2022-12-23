@@ -152,6 +152,7 @@ const mail = document.querySelector("#mail");
 const iva = document.querySelector("#iva");
 
 const botonCliente = document.querySelector("#botonCliente");
+
 const espacioCliente = document.querySelector("#espacioCliente");
 
 
@@ -184,7 +185,12 @@ const cliente1 = new crearCliente (localStorage.getItem("Nombre"), localStorage.
 
 botonCliente.addEventListener("click", function (e) {
     e.preventDefault();
-    espacioCliente.innerHTML = `<h4> Sus datos registrados son: </h4> <br> <h6>Nombre: ${localStorage.getItem("Nombre")}. <br> Apellido: ${localStorage.getItem("Apellido")}. <br> Correo: ${localStorage.getItem("Correo")}.</h6>`;
+    espacioCliente.innerHTML = `<h4> Sus datos registrados son: </h4> <br> <h6>Nombre: ${localStorage.getItem("Nombre")}. <br> Apellido: ${localStorage.getItem("Apellido")}. <br> Correo: ${localStorage.getItem("Correo")}.</h6> <br> <button type="submit" class="btn btn-outline-info" id="botonOcultar">Ocultar datos cliente</button>`;
+    const botonOcultar = document.querySelector("#botonOcultar");
+    botonOcultar.addEventListener("click", function (e) {
+        e.preventDefault(e);
+        espacioCliente.innerHTML = `<button type="submit" class="btn btn-outline-info" id="botonCliente">Mostrar cliente</button>`;
+    })
 });
 
 
