@@ -151,21 +151,20 @@ const apellido = document.querySelector("#apellido");
 const mail = document.querySelector("#mail");
 const iva = document.querySelector("#iva");
 
-
 const botonCliente = document.querySelector("#botonCliente");
 
 const espacioCliente = document.querySelector("#espacioCliente");
 
 
-formulario.addEventListener("submit", registrar)
+formulario.addEventListener("submit", registrar);
 
 function registrar(e) {
     e.preventDefault();
     localStorage.setItem("Nombre", nombre.value);
     localStorage.setItem("Apellido", apellido.value);
     localStorage.setItem("Correo", mail.value);
-    localStorage.setItem("RI", iva.value);
-}
+    localStorage.setItem("RI", iva.checked);
+};
 
 //Función constructora de cliente
 
