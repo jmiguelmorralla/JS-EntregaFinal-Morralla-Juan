@@ -226,9 +226,13 @@ let mostrarProductos = () => {
 }
 
 
-if (localStorage.getItem("productos")) {console.log("Existe")} else {
-    localStorage.setItem("productos", JSON.stringify(listadoProductos))
-    mostrarProductos()
+if (localStorage.getItem("productos")) 
+{console.log("Existe");
+mostrarProductos();} 
+else 
+{
+    localStorage.setItem("productos", JSON.stringify(listadoProductos));
+    mostrarProductos();
 }
 
 
