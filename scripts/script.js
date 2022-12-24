@@ -151,6 +151,7 @@ const apellido = document.querySelector("#apellido");
 const mail = document.querySelector("#mail");
 const iva = document.querySelector("#iva");
 
+
 const botonCliente = document.querySelector("#botonCliente");
 
 const espacioCliente = document.querySelector("#espacioCliente");
