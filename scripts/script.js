@@ -188,7 +188,7 @@ const cliente1 = new crearCliente (localStorage.getItem("Nombre"), localStorage.
 
 botonCliente.addEventListener("click", function (e) {
     e.preventDefault();
-    espacioCliente.innerHTML = `<h4> Sus datos registrados son: </h4> <br> <h6>Nombre: ${localStorage.getItem("Nombre")}. <br> Apellido: ${localStorage.getItem("Apellido")} <br> Correo: ${localStorage.getItem("Correo")}.</h6> <br> <button type="submit" class="btn btn-outline-info" id="botonOcultar">Ocultar datos cliente</button>`;
+    espacioCliente.innerHTML = `<h4> Sus datos registrados son: </h4> <br> <h6>Nombre: ${localStorage.getItem("Nombre")} <br> Apellido: ${localStorage.getItem("Apellido")} <br> Correo: ${localStorage.getItem("Correo")}.</h6> <br> <button type="submit" class="btn btn-outline-info" id="botonOcultar">Ocultar datos cliente</button>`;
     const botonOcultar = document.querySelector("#botonOcultar");
     botonOcultar.addEventListener("click", function (e) {
         e.preventDefault(e);
@@ -202,13 +202,34 @@ botonCliente.addEventListener("click", function (e) {
 
 //practica storage y json
 
-if (localStorage.getItem("productos")) {console.log("Existe")} else {
-    localStorage.setItem("productos", JSON.stringify(listadoProductos))
+
+let mostrarProductos = () => {
+    let productosMostrados = JSON.parse(localStorage.getItem("productos"));
+
+    for (let index = 0; index < productosMostrados.length; index++) {
+        let div = document.innerHTML(`
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">${productosMostrados[index].nombre}</h5>
+                    <p class="card-text">${productosMostrados[index].precio}.</p>
+                    <a href="#" class="btn btn-warning">Agregar</a>
+                </div>
+            </div>
+        </div>`);
+
+        listaDeProductos.append(div);     
+    }
+
+
+
 }
 
 
-
-
+if (localStorage.getItem("productos")) {console.log("Existe")} else {
+    localStorage.setItem("productos", JSON.stringify(listadoProductos))
+    mostrarProductos()
+}
 
 
 
