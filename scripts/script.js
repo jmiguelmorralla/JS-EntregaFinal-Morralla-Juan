@@ -144,6 +144,7 @@ else {
 }
 */
 
+//Variables
 
 const formulario = document.querySelector("#formulario");
 const nombre = document.querySelector("#nombre");
@@ -152,9 +153,11 @@ const mail = document.querySelector("#mail");
 const iva = document.querySelector("#iva");
 
 const botonCliente = document.querySelector("#botonCliente");
-
 const espacioCliente = document.querySelector("#espacioCliente");
 
+const listaDeProductos = document.querySelector(".contenedor-productos");
+
+//Eventos / Local Storage
 
 formulario.addEventListener("submit", registrar);
 
@@ -177,11 +180,11 @@ class crearCliente {
     }
 }
 
-//Creación de cliente.
+//Creación de cliente / Local Storage.
 
 const cliente1 = new crearCliente (localStorage.getItem("Nombre"), localStorage.getItem("Apellido"), localStorage.getItem("Correo"), localStorage.getItem("RI"));
 
-// Mostrar información del cliente
+// Mostrar información del cliente / Eventos
 
 botonCliente.addEventListener("click", function (e) {
     e.preventDefault();
@@ -217,27 +220,16 @@ const balancin = new crearProducto ("Balancin", "Juguetes Olsen", "Argentina", "
 const arcoiris = new crearProducto ("Arcoiris", "Juguetes Olsen", "Argentina", "Madera", 7000, true);
 const casita = new crearProducto ("Casita", "Confiture", "Argentina", "Madera", 4500, true);
 const rompecabezas = new crearProducto ("Rompecabezas", "Tak Tak","Argentina", "Madera", 3000, false);
-const torre = new crearProducto ("Torre de Encastre", "Juguetes Olsen", "Argentina", "Madera", 2900, true);
-const luna = new crearProducto ("Luna Equilibrista", "Confiture", "Argentina", "Madera", 5900, true);
+const torre = new crearProducto ("Torre", "Juguetes Olsen", "Argentina", "Madera", 2900, true);
+const luna = new crearProducto ("Luna", "Confiture", "Argentina", "Madera", 5900, true);
 
-// DATOS DEL COMPRADOR
-// const formulario = document.querySelector("#formulario");
-// const nombre = document.querySelector("#nombre");
-// const correo = document.querySelector("#mail");
 
-// formulario.addEventListener("submit", validarFormulario);
 
-// function validarFormulario(e) {
-//     e.preventDefault();
+//practica storage y json
 
-//     let dato1 = document.createElement("h2")
-//     dato1.innerHTML=`${nombre.value}`;
-//     document.body.appendChild(dato1);
-
-//     let dato2 = document.createElement("h4")
-//     dato2.innerHTML=`${correo.value}`;
-//     document.body.appendChild(dato2);
-// };
+if (localStorage.getItem("productos")) {console.log("Existe")} else {
+    localStorage.setItem("productos", JSON.stringify(productos))
+}
 
 
 

@@ -12000,7 +12000,7 @@ select.form-control[multiple] {
   color: inherit;
 }
 
-.container-products{
+.contenedor-productos{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
