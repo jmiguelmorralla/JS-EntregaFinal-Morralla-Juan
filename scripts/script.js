@@ -66,7 +66,7 @@ let mostrarProductos = () => {
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">${productosMostrados[index].nombre}</h5>
-                    <p class="card-text">${productosMostrados[index].precio}.</p>
+                    <p class="card-text">$${productosMostrados[index].precio}</p>
                     <a href="#" class="btn btn-warning">Agregar</a>
                 </div>
             </div>`;
@@ -83,3 +83,72 @@ else
     localStorage.setItem("productos", JSON.stringify(listadoProductos));
     mostrarProductos();
 }
+
+
+
+// Carrito DOM
+
+let articulosCarrito = [];
+
+const productosCarrito = document.querySelectorAll(".card");
+
+productosCarrito.forEach((card) => {
+    card.addEventListener("click", (e) => {
+        leerProductos(e.target.parentElement);
+    });
+});
+
+function leerProductos (producto) {
+    const infoProducto = {
+        nombre: producto.querySelector(".card-title").textContent,
+        precio: producto.querySelector(".card-text").textContent,
+    }
+    
+    articulosCarrito = [...articulosCarrito, infoProducto];
+    mostrarCarrito ()
+}
+
+const espacioCarrito = document.querySelector("#espacioCarrito");
+
+function mostrarCarrito (){
+    espacioCarrito.innerHTML = "";
+
+    articulosCarrito.forEach((producto) => {
+    const fila = document.createElement("div");
+    fila.innerHTML =`
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio Unitario</th>
+            <th scope="col">Total</th>
+            <th scope="col">Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">${articulosCarrito.indexOf(producto)+1}</th>
+                <td>${producto.nombre}</td>
+                <td>x</td>
+                <td>${producto.precio}</td>
+                <th scope="col">x*${producto.precio}</th>
+                <td><button class="btn btn-danger">Quitar</button></td>
+            </tr>
+        </tbody>
+    </table>`;
+
+    
+    espacioCarrito.appendChild(fila);
+    
+
+    });
+
+
+let cart = document.querySelector("#cart");
+
+
+cart.innerHTML = articulosCarrito.length;
+}
+
