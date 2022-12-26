@@ -8,34 +8,34 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-  <!-- MENU DE NAVEGACIÓN -->
-  <nav class="navbar">
+  <nav class="navbar shadow">
     <div class="container">
       <span class="navbar-brand"><img src="img/Logo Vitonio.png" style="max-height: 110px;" alt="Logo Vitonio"></span>
       <button type="button" class="btn btn-warning">
-        <img src="/img/cart.svg" alt="Carrito" height="30px"> <span class="badge text-bg-warning">+</span>
+        <img src="img/cart.svg" alt="Carrito" height="30px"> <span class="badge text-bg-warning">+</span>
       </button>
     </div>
   </nav>
+  <!-- DATOS DE CLIENTE -->
   <div class="container">
     <div class="container">
-      <h2>Datos de comprador</h2>
+      <h2>Datos del Cliente</h2>
       <form id="formulario" action="/redireccion">
         <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">Nombre</label>
+          <label class="form-label">Nombre</label>
           <input type="text" class="form-control" id="nombre">
         </div>
         <div class="mb-3">
-          <label for="formGroupExampleInput" class="form-label">Apellido</label>
+          <label class="form-label">Apellido</label>
           <input type="text" class="form-control" id="apellido">
         </div>
         <div class="mb-3">
-          <label for="formGroupExampleInput2"   class="form-label">Correo Electrónico</label>
+          <label class="form-label">Correo Electrónico</label>
           <input type="email" class="form-control" id="mail">
         </div>
         <div class="mb-3">
           <input class="form-check-input" type="checkbox" value="" id="iva">
-          <label class="form-check-label" for="formGroupExampleInput2">
+          <label class="form-check-label">
             Soy Responsable Inscripto en IVA.
           </label>
         </div>
@@ -44,74 +44,20 @@
     </div>
     
   <!-- CONTENEDOR DE PRODUCTOS -->
-  <div class="contenedor-productos">
-    <!-- <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Balancín</h5>
-            <p class="card-text">Estimula el equilibrio.</p>
-            <a href="#" class="btn btn-warning">Agregar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Arcoiris</h5>
-            <p class="card-text">Estimula la motricidad fina.</p>
-            <a href="#" class="btn btn-warning">Agregar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Casita</h5>
-            <p class="card-text">Estimula la lógica.</p>
-            <a href="#" class="btn btn-warning">Agregar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Rompecabezas</h5>
-            <p class="card-text">Estimula la percepción.</p>
-            <a href="#" class="btn btn-warning">Agregar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Torre</h5>
-            <p class="card-text">Estimula la imaginación.</p>
-            <a href="#" class="btn btn-warning">Agregar</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Luna</h5>
-            <p class="card-text">Estimula el tacto.</p>
-            <a href="#" class="btn btn-warning">Agregar</a>
-          </div>
-        </div>
-      </div>
-    </div> -->
+  <div class="contenedor-productos mb-3">
   </div>
+
   <!-- ESPACIO CLIENTE -->
   <div class="container" id="espacioCliente"> 
     <button type="submit" class="btn btn-outline-info" id="botonCliente">Mostrar cliente</button>
   </div>
+
   <!-- ESPACIO CARRITO -->
   <div class="container" id="espacioCarrito">
     <h2 id="carrito">Carrito</h2>
     <h5>Vacío</h5>
   </div>
- 
+
   <!-- SCRIPTS -->
   <script src="scripts/datos.js"></script>
   <script src="scripts/script.js"></script>
