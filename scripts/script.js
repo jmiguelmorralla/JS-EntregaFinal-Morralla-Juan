@@ -5,11 +5,123 @@ const nombre = document.querySelector("#nombre");
 const apellido = document.querySelector("#apellido");
 const mail = document.querySelector("#mail");
 const iva = document.querySelector("#iva");
-
 const botonCliente = document.querySelector("#botonCliente");
 const espacioCliente = document.querySelector("#espacioCliente");
+const contenedorProductos = document.querySelector(".contenedor-productos");
+const espacioCarrito = document.querySelector("#espacioCarrito");
+let carrito = [];
+let cart = document.querySelector("#cart");
 
-const listaDeProductos = document.querySelector(".contenedor-productos");
+//Storage y Json
+
+let mostrarProductos = () => {
+    let productosMostrados = JSON.parse(localStorage.getItem("productos"));
+
+    for (let index = 0; index < productosMostrados.length; index++) {
+        const div = document.createElement("div")
+        div.className = "col";
+        
+        div.innerHTML = `
+            <div class="card">
+                <div class="card-body">
+                    <h6 id="id">Id: ${productosMostrados[index].id}</h6>
+                    <h5 class="card-title">${productosMostrados[index].nombre}</h5>
+                    <p class="card-text">$${productosMostrados[index].precio}</p>
+                    <a href="#" class="btn btn-warning">Agregar</a>
+                </div>
+            </div>`;
+
+        contenedorProductos.append(div);     
+    }
+}
+
+if (localStorage.getItem("productos")) 
+{mostrarProductos();} 
+else 
+{
+    localStorage.setItem("productos", JSON.stringify(listadoProductos));
+    mostrarProductos();
+}
+
+// Carrito DOM
+
+cart.addEventListener("click", irACarrito);
+
+function irACarrito () {
+    location.hash = "espacioCarrito";
+};
+
+const catalogoProducto = document.querySelectorAll(".card");
+
+catalogoProducto.forEach((card) => {
+    card.addEventListener("click", (e) => {
+        agregarProductoCarrito(e.target.parentElement);
+    });
+});
+
+function agregarProductoCarrito (producto) {
+    const infoProductoCatalogo = {
+        id: producto.querySelector("#id").textContent,
+        nombre: producto.querySelector(".card-title").textContent,
+        precio: producto.querySelector(".card-text").textContent,
+    }
+    
+    carrito = [...carrito, infoProductoCatalogo];
+    mostrarCarrito ();
+}
+
+function mostrarCarrito (){
+    espacioCarrito.innerHTML = "";
+
+    carrito.forEach((producto) => {
+    const fila = document.createElement("div");
+    fila.innerHTML =`
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Id</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Precio Unitario</th>
+            <th scope="col">Total</th>
+            <th scope="col">Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">${carrito.indexOf(producto)+1}</th>
+                <td>${producto.nombre}</td>
+                <td>${producto.id}</td>
+                <td>x</td>
+                <td>${producto.precio}</td>
+                <th scope="col">x*${producto.precio}</th>
+                <td><button class="btn btn-outline-danger botonEliminar" id="eliminarProducto"><img src="img/trash.svg" alt="Eliminar" height="20px"></button></td>
+            </tr>
+        </tbody>
+
+    </table>`;
+
+    
+    espacioCarrito.appendChild(fila);
+    
+
+    });
+
+    let cant = document.querySelector("#cant");
+    cant.innerHTML = carrito.length;
+
+    const botonEliminar = document.querySelector(".botonEliminar");
+    botonEliminar.addEventListener("click", eliminarProductoCarrito);
+    
+    function eliminarProductoCarrito (productoID) {
+        const item = carrito.find ((producto) => producto.id === productoID);
+        const indice = carrito.indexOf(item);
+        carrito.splice (indice, 1);
+    }
+    console.log(carrito)
+};
+
 
 //Eventos / Local Storage
 
@@ -52,103 +164,4 @@ botonCliente.addEventListener("click", function (e) {
         espacioCliente.innerHTML = `Se ocultaron los datos de cliente.`;
     })
 });
-
-//Storage y Json
-
-let mostrarProductos = () => {
-    let productosMostrados = JSON.parse(localStorage.getItem("productos"));
-
-    for (let index = 0; index < productosMostrados.length; index++) {
-        const div = document.createElement("div")
-        div.className = "col";
-        
-        div.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${productosMostrados[index].nombre}</h5>
-                    <p class="card-text">$${productosMostrados[index].precio}</p>
-                    <a href="#" class="btn btn-warning">Agregar</a>
-                </div>
-            </div>`;
-
-        listaDeProductos.append(div);     
-    }
-}
-
-
-if (localStorage.getItem("productos")) 
-{mostrarProductos();} 
-else 
-{
-    localStorage.setItem("productos", JSON.stringify(listadoProductos));
-    mostrarProductos();
-}
-
-
-
-// Carrito DOM
-
-let articulosCarrito = [];
-
-const productosCarrito = document.querySelectorAll(".card");
-
-productosCarrito.forEach((card) => {
-    card.addEventListener("click", (e) => {
-        leerProductos(e.target.parentElement);
-    });
-});
-
-function leerProductos (producto) {
-    const infoProducto = {
-        nombre: producto.querySelector(".card-title").textContent,
-        precio: producto.querySelector(".card-text").textContent,
-    }
-    
-    articulosCarrito = [...articulosCarrito, infoProducto];
-    mostrarCarrito ()
-}
-
-const espacioCarrito = document.querySelector("#espacioCarrito");
-
-function mostrarCarrito (){
-    espacioCarrito.innerHTML = "";
-
-    articulosCarrito.forEach((producto) => {
-    const fila = document.createElement("div");
-    fila.innerHTML =`
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Producto</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Precio Unitario</th>
-            <th scope="col">Total</th>
-            <th scope="col">Acción</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">${articulosCarrito.indexOf(producto)+1}</th>
-                <td>${producto.nombre}</td>
-                <td>x</td>
-                <td>${producto.precio}</td>
-                <th scope="col">x*${producto.precio}</th>
-                <td><button class="btn btn-danger">Quitar</button></td>
-            </tr>
-        </tbody>
-    </table>`;
-
-    
-    espacioCarrito.appendChild(fila);
-    
-
-    });
-
-
-let cart = document.querySelector("#cart");
-
-
-cart.innerHTML = articulosCarrito.length;
-}
 
