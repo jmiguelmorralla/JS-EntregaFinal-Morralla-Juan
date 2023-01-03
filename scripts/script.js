@@ -114,12 +114,12 @@ function mostrarCarrito (){
     const botonEliminar = document.querySelector(".botonEliminar");
     botonEliminar.addEventListener("click", eliminarProductoCarrito);
     
-    function eliminarProductoCarrito (productoID) {
-        const item = carrito.find ((producto) => producto.id === productoID);
-        const indice = carrito.indexOf(item);
-        carrito.splice (indice, 1);
-    }
-    console.log(carrito)
+    // function eliminarProductoCarrito (productoID) {
+    //     const item = carrito.find ((producto) => producto.id === productoID);
+    //     const indice = carrito.indexOf(item);
+    //     carrito.splice (indice, 1);
+    // }
+    // console.log(carrito);
 };
 
 
