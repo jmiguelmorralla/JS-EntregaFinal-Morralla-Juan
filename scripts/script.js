@@ -24,7 +24,7 @@ let mostrarProductos = () => {
         div.innerHTML = `
             <div class="card">
                 <div class="card-body">
-                    <h6 id="id">Id: ${productosMostrados[index].id}</h6>
+                    <h6 id="id">${productosMostrados[index].id}</h6>
                     <h5 class="card-title">${productosMostrados[index].nombre}</h5>
                     <p class="card-text">$${productosMostrados[index].precio}</p>
                     <a href="#" class="btn btn-warning">Agregar</a>
@@ -114,12 +114,15 @@ function mostrarCarrito (){
     const botonEliminar = document.querySelector(".botonEliminar");
     botonEliminar.addEventListener("click", eliminarProductoCarrito);
     
-    // function eliminarProductoCarrito (productoID) {
-    //     const item = carrito.find ((producto) => producto.id === productoID);
-    //     const indice = carrito.indexOf(item);
-    //     carrito.splice (indice, 1);
-    // }
-    // console.log(carrito);
+    console.log(carrito)
+
+    function eliminarProductoCarrito (productoID) {
+        const item = carrito.find ((producto) => producto.id === productoID);
+        console.log(item);
+        // const indice = carrito.indexOf(item);
+        // carrito.splice (indice, 1);
+    }
+    
 };
 
 
