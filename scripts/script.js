@@ -74,56 +74,62 @@ function mostrarCarrito (){
     espacioCarrito.innerHTML = "";
 
     carrito.forEach((producto) => {
-    const fila = document.createElement("div");
-    fila.innerHTML =`
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Producto</th>
-            <th scope="col">Id</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Precio Unitario</th>
-            <th scope="col">Total</th>
-            <th scope="col">Acción</th>
-        </tr>
-        </thead>
-        <tbody>
+        const fila = document.createElement("div");
+        fila.innerHTML =`
+        <table class="table">
+            <thead>
             <tr>
-                <th scope="row">${carrito.indexOf(producto)+1}</th>
-                <td>${producto.nombre}</td>
-                <td>${producto.id}</td>
-                <td>x</td>
-                <td>${producto.precio}</td>
-                <th scope="col">x*${producto.precio}</th>
-                <td><button class="btn btn-outline-danger botonEliminar" id="eliminarProducto"><img src="img/trash.svg" alt="Eliminar" height="20px"></button></td>
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Id</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Precio Unitario</th>
+                <th scope="col">Total</th>
+                <th scope="col">Acción</th>
             </tr>
-        </tbody>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">${carrito.indexOf(producto)+1}</th>
+                    <td>${producto.nombre}</td>
+                    <td>${producto.id}</td>
+                    <td>x</td>
+                    <td>${producto.precio}</td>
+                    <th scope="col">x*${producto.precio}</th>
+                    <td><button class="btn btn-outline-danger" id="eliminarProducto${producto.id}"><img src="img/trash.svg" alt="Eliminar" height="20px"></button></td>
+                </tr>
+            </tbody>
 
-    </table>`;
+        </table>`;
 
     
-    espacioCarrito.appendChild(fila);
+        espacioCarrito.appendChild(fila);
+
+        const botonEliminar = document.querySelector("#eliminarProducto" + producto.id);
+
+        botonEliminar.addEventListener("click", () => {
+            const item = carrito.find((temp) => (temp.id === producto.id));
+            carrito = carrito.filter((temp) => (temp.id !== producto.id));
+            
+            mostrarCarrito();
+        });        
     
 
     });
-
+    
     let cant = document.querySelector("#cant");
     cant.innerHTML = carrito.length;
 
-    const botonEliminar = document.querySelector(".botonEliminar");
-    botonEliminar.addEventListener("click", eliminarProductoCarrito);
+    if (carrito.length === 0) {
+        espacioCarrito.innerHTML = `<h5>Su carrito se encuentra vacío.</h5>`
+    } /*else {
+        const vaciarCarrito = document.createElement("div");
+        espacioCarrito.innerHTML = `<button class="btn btn-danger" id="botonVaciarCarrito">Vaciar Carrito</button>`
+    };*/
     
     console.log(carrito)
-
-    function eliminarProductoCarrito (productoID) {
-        const item = carrito.find ((producto) => producto.id === productoID);
-        console.log(item);
-        // const indice = carrito.indexOf(item);
-        // carrito.splice (indice, 1);
-    }
-    
 };
+
 
 
 //Eventos / Local Storage
@@ -165,6 +171,6 @@ botonCliente.addEventListener("click", function (e) {
     botonOcultar.addEventListener("click", function (e) {
         e.preventDefault(e);
         espacioCliente.innerHTML = `Se ocultaron los datos de cliente.`;
-    })
+    });
 });
 
