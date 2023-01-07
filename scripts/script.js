@@ -9,10 +9,22 @@ const botonCliente = document.querySelector("#botonCliente");
 const espacioCliente = document.querySelector("#espacioCliente");
 const contenedorProductos = document.querySelector(".contenedor-productos");
 const espacioCarrito = document.querySelector("#espacioCarrito");
-let carrito = [];
+const totalCarrito = document.querySelector("#totalCarrito");
 let cart = document.querySelector("#cart");
+let carrito = [];
 
 //Storage y Json
+
+
+/* REVISAR, NO FUNCIONA RECUPERAR EL CARRITO
+
+document.addEventListener("DOMContentLoaded", () => {
+    carrito = JSON.parse(localStorage.getItem(carrito)) || [];
+    mostrarCarrito();
+});
+
+*/
+
 
 let mostrarProductos = () => {
     let productosMostrados = JSON.parse(localStorage.getItem("productos"));
@@ -70,7 +82,10 @@ function agregarProductoCarrito (producto) {
     mostrarCarrito ();
 }
 
+
+
 function mostrarCarrito (){
+
     espacioCarrito.innerHTML = "";
 
     carrito.forEach((producto) => {
@@ -120,14 +135,11 @@ function mostrarCarrito (){
     let cant = document.querySelector("#cant");
     cant.innerHTML = carrito.length;
 
-    if (carrito.length === 0) {
-        espacioCarrito.innerHTML = `<h5>Su carrito se encuentra vacío.</h5>`
-    } /*else {
-        const vaciarCarrito = document.createElement("div");
-        espacioCarrito.innerHTML = `<button class="btn btn-danger" id="botonVaciarCarrito">Vaciar Carrito</button>`
-    };*/
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+
+    console.log(carrito);
+
     
-    console.log(carrito)
 };
 
 
@@ -174,3 +186,36 @@ botonCliente.addEventListener("click", function (e) {
     });
 });
 
+
+
+let carritoJSON = JSON.parse(localStorage.getItem(carrito));
+
+console.log(carritoJSON);
+
+console.log(totalCarrito);
+
+/* REVISAR, NO FUNCIONA
+
+const revisarCarritoVacio = () => {
+
+    if (carritoJSON.length){
+        const botonVaciarCarrito = document.createElement("div");
+        botonVaciarCarrito.innerHTML = `<button class="btn btn-danger" id="botonVaciarCarrito">Vaciar Carrito</button>`;
+        totalCarrito.appendChild(botonVaciarCarrito);
+    } 
+    else {
+        const mensajeVacio = document.createElement("div");
+        mensajeVacio.innerHTML =`<h5>Su carrito se encuentra vacío.</h5>`;
+        totalCarrito.appendChild(mensajeVacio);
+    };
+};
+
+revisarCarritoVacio(); 
+
+
+
+
+
+
+VACIAR CARRITO
+*/
