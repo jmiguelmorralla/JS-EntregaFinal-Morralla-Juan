@@ -10,6 +10,8 @@ const espacioCliente = document.querySelector("#espacioCliente");
 const contenedorProductos = document.querySelector(".contenedor-productos");
 const espacioCarrito = document.querySelector("#espacioCarrito");
 const totalCarrito = document.querySelector("#totalCarrito");
+const botonVaciarCarrito = document.querySelector("#botonVaciarCarrito");
+const precioTotal = document.querySelector("#precioTotal");
 let cart = document.querySelector("#cart");
 let carrito = [];
 
@@ -26,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 */
 
 
-let mostrarProductos = () => {
+const mostrarProductos = () => {
     let productosMostrados = JSON.parse(localStorage.getItem("productos"));
 
     for (let index = 0; index < productosMostrados.length; index++) {
@@ -108,7 +110,7 @@ function mostrarCarrito (){
                     <th scope="row">${carrito.indexOf(producto)+1}</th>
                     <td>${producto.nombre}</td>
                     <td>${producto.id}</td>
-                    <td>x</td>
+                    <td>${producto.cantidad}</td>
                     <td>${producto.precio}</td>
                     <th scope="col">x*${producto.precio}</th>
                     <td><button class="btn btn-outline-danger" id="eliminarProducto${producto.id}"><img src="img/trash.svg" alt="Eliminar" height="20px"></button></td>
@@ -120,6 +122,7 @@ function mostrarCarrito (){
     
         espacioCarrito.appendChild(fila);
 
+        function eliminarProducto () {
         const botonEliminar = document.querySelector("#eliminarProducto" + producto.id);
 
         botonEliminar.addEventListener("click", () => {
@@ -128,16 +131,27 @@ function mostrarCarrito (){
             
             mostrarCarrito();
         });        
-    
+        };
+
+        eliminarProducto();
 
     });
     
     let cant = document.querySelector("#cant");
     cant.innerHTML = carrito.length;
 
+    /*
+    
+    ARREGLAR
+    precioTotal.textContent = carrito.reduce((acc, prod) => acc + producto.cantidad * producto.precio, 0)
+    
+    
+    
+    
+    */
     localStorage.setItem("carrito", JSON.stringify(carrito));
 
-    console.log(carrito);
+
 
     
 };
@@ -212,10 +226,15 @@ const revisarCarritoVacio = () => {
 
 revisarCarritoVacio(); 
 
-
-
-
-
-
-VACIAR CARRITO
 */
+
+
+
+
+
+botonVaciarCarrito.addEventListener("click", limpiarCarrito);
+
+function limpiarCarrito() {
+    carrito.length = [];
+    mostrarCarrito();
+};
