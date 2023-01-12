@@ -18,16 +18,6 @@ let carrito = [];
 //Storage y Json
 
 
-/* REVISAR, NO FUNCIONA RECUPERAR EL CARRITO
-
-document.addEventListener("DOMContentLoaded", () => {
-    carrito = JSON.parse(localStorage.getItem(carrito)) || [];
-    mostrarCarrito();
-});
-
-*/
-
-
 const mostrarProductos = () => {
     let productosMostrados = JSON.parse(localStorage.getItem("productos"));
 
@@ -39,8 +29,9 @@ const mostrarProductos = () => {
             <div class="card">
                 <div class="card-body">
                     <h6 id="id">${productosMostrados[index].id}</h6>
+                    <h6 id="cantidad">${productosMostrados[index].cantidad}</h6>
                     <h5 class="card-title">${productosMostrados[index].nombre}</h5>
-                    <p class="card-text">$${productosMostrados[index].precio}</p>
+                    <p class="card-text">${productosMostrados[index].precio}</p>
                     <a href="#" class="btn btn-warning">Agregar</a>
                 </div>
             </div>`;
@@ -74,23 +65,41 @@ catalogoProducto.forEach((card) => {
 });
 
 function agregarProductoCarrito (producto) {
+
+    // const existe = carrito.some(item => item.id === producto.id);
+
+    // if (existe) {
+    //     producto.cantidad++;
+    // } else {
+
     const infoProductoCatalogo = {
         id: producto.querySelector("#id").textContent,
         nombre: producto.querySelector(".card-title").textContent,
         precio: producto.querySelector(".card-text").textContent,
-    }
+        cantidad: producto.querySelector("#cantidad").textContent,
+    };
+
+  
     
     carrito = [...carrito, infoProductoCatalogo];
+
     mostrarCarrito ();
-}
+    }
 
 
 
 function mostrarCarrito (){
+    
+    document.addEventListener("DOMContentLoaded", () => {
+        carrito = JSON.parse(localStorage.getItem(carrito)) || [];
+        mostrarCarrito();
+    });
 
+       
     espacioCarrito.innerHTML = "";
 
     carrito.forEach((producto) => {
+                    
         const fila = document.createElement("div");
         fila.innerHTML =`
         <table class="table">
@@ -111,8 +120,8 @@ function mostrarCarrito (){
                     <td>${producto.nombre}</td>
                     <td>${producto.id}</td>
                     <td>${producto.cantidad}</td>
-                    <td>${producto.precio}</td>
-                    <th scope="col">x*${producto.precio}</th>
+                    <td>$${producto.precio}</td>
+                    <td>$${producto.cantidad*producto.precio}</td>
                     <td><button class="btn btn-outline-danger" id="eliminarProducto${producto.id}"><img src="img/trash.svg" alt="Eliminar" height="20px"></button></td>
                 </tr>
             </tbody>
@@ -121,7 +130,10 @@ function mostrarCarrito (){
 
     
         espacioCarrito.appendChild(fila);
-
+         
+  
+        /* ELIMINAR CADA PRODUCTO */
+        
         function eliminarProducto () {
         const botonEliminar = document.querySelector("#eliminarProducto" + producto.id);
 
@@ -137,25 +149,54 @@ function mostrarCarrito (){
 
     });
     
+    /* NUMERO EN BOTÓN CARRITO */
+
     let cant = document.querySelector("#cant");
     cant.innerHTML = carrito.length;
-
-    /*
     
-    ARREGLAR
-    precioTotal.textContent = carrito.reduce((acc, prod) => acc + producto.cantidad * producto.precio, 0)
+    /* TOTALIZADOR */
+    precioTotal.textContent = carrito.reduce((acc, prod) => acc + prod.cantidad * prod.precio, 0)
     
-    
-    
-    
-    */
     localStorage.setItem("carrito", JSON.stringify(carrito));
-
-
-
     
 };
 
+botonVaciarCarrito.addEventListener("click", limpiarCarrito);
+
+function limpiarCarrito() {
+    carrito.length = [];
+    localStorage.removeItem(carrito);
+    mostrarCarrito();
+
+};
+
+let carritoJSON = JSON.parse(localStorage.getItem(carrito));
+
+console.log(carritoJSON);
+
+
+
+/* REVISAR, NO FUNCIONA
+
+const revisarCarritoVacio = () => {
+
+    if (carritoJSON.length){
+        const botonVaciarCarrito = document.createElement("div");
+        botonVaciarCarrito.innerHTML = `<button class="btn btn-danger" id="botonVaciarCarrito">Vaciar Carrito</button>`;
+        totalCarrito.appendChild(botonVaciarCarrito);
+    } 
+    else {
+        const mensajeVacio = document.createElement("div");
+        mensajeVacio.innerHTML =`<h5>Su carrito se encuentra vacío.</h5>`;
+        totalCarrito.appendChild(mensajeVacio);
+    };
+};
+
+revisarCarritoVacio(); 
+
+*/
+
+/*---------------------------------- FORMULARIO------------------------------------*/
 
 
 //Eventos / Local Storage
@@ -202,39 +243,11 @@ botonCliente.addEventListener("click", function (e) {
 
 
 
-let carritoJSON = JSON.parse(localStorage.getItem(carrito));
-
-console.log(carritoJSON);
-
-console.log(totalCarrito);
-
-/* REVISAR, NO FUNCIONA
-
-const revisarCarritoVacio = () => {
-
-    if (carritoJSON.length){
-        const botonVaciarCarrito = document.createElement("div");
-        botonVaciarCarrito.innerHTML = `<button class="btn btn-danger" id="botonVaciarCarrito">Vaciar Carrito</button>`;
-        totalCarrito.appendChild(botonVaciarCarrito);
-    } 
-    else {
-        const mensajeVacio = document.createElement("div");
-        mensajeVacio.innerHTML =`<h5>Su carrito se encuentra vacío.</h5>`;
-        totalCarrito.appendChild(mensajeVacio);
-    };
-};
-
-revisarCarritoVacio(); 
-
-*/
 
 
 
 
 
-botonVaciarCarrito.addEventListener("click", limpiarCarrito);
 
-function limpiarCarrito() {
-    carrito.length = [];
-    mostrarCarrito();
-};
+
+
