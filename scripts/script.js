@@ -18,38 +18,52 @@ let carrito = [];
 //Storage y Json
 
 
-const mostrarProductos = () => {
-    let productosMostrados = JSON.parse(localStorage.getItem("productos"));
+// const mostrarProductos = () => {
+//     let productosMostrados = JSON.parse(localStorage.getItem("productos"));
 
-    for (let index = 0; index < productosMostrados.length; index++) {
-        const div = document.createElement("div")
-        div.className = "col";
+//     for (let index = 0; index < productosMostrados.length; index++) {
+//         const div = document.createElement("div")
+//         div.className = "col";
         
-        div.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                    <h6 id="id">${productosMostrados[index].id}</h6>
-                    <h6 id="cantidad">${productosMostrados[index].cantidad}</h6>
-                    <h5 class="card-title">${productosMostrados[index].nombre}</h5>
-                    <p class="card-text">${productosMostrados[index].precio}</p>
-                    <a href="#" class="btn btn-warning">Agregar</a>
-                </div>
-            </div>`;
+//         div.innerHTML = `
+//             <div class="card">
+//                 <div class="card-body">
+//                     <h6 id="id">${productosMostrados[index].id}</h6>
+//                     <h6 id="cantidad">${productosMostrados[index].cantidad}</h6>
+//                     <h5 class="card-title">${productosMostrados[index].nombre}</h5>
+//                     <p class="card-text">${productosMostrados[index].precio}</p>
+//                     <a href="#" class="btn btn-warning">Agregar</a>
+//                 </div>
+//             </div>`;
 
-        contenedorProductos.append(div);     
-    }
-}
+//         contenedorProductos.append(div);     
+//     }
+// }
 
-if (localStorage.getItem("productos")) 
-{mostrarProductos();} 
-else 
-{
-    localStorage.setItem("productos", JSON.stringify(listadoProductos));
-    mostrarProductos();
-}
+const mostrarProductos = async () => {
+    const respuesta = await fetch("../scripts/datos.json")
+    const datos = await respuesta.json()
+    
+    datos.forEach((productosMostrados)=>{
+            const div = document.createElement("div")
+            div.className = "col";
+            
+            div.innerHTML = `
+                <div class="card">
+                    <div class="card-body">
+                        <h6 id="id">${productosMostrados.id}</h6>
+                        <h6 id="cantidad">${productosMostrados.cantidad}</h6>
+                        <h5 class="card-title">${productosMostrados.nombre}</h5>
+                        <p class="card-text">${productosMostrados.precio}</p>
+                        <a href="#" class="btn btn-warning">Agregar</a>
+                    </div>
+                </div>`;
+    
+            contenedorProductos.append(div); 
+        });
+};
 
-fetch("../scripts/datos.json")
-    .then((resp) => console.log(resp));
+mostrarProductos();
 
 // Carrito DOM
 
@@ -60,6 +74,7 @@ function irACarrito () {
 };
 
 const catalogoProducto = document.querySelectorAll(".card");
+
 
 catalogoProducto.forEach((card) => {
     card.addEventListener("click", (e) => {
@@ -81,15 +96,11 @@ function agregarProductoCarrito (producto) {
         precio: producto.querySelector(".card-text").textContent,
         cantidad: producto.querySelector("#cantidad").textContent,
     };
-
-  
     
     carrito = [...carrito, infoProductoCatalogo];
 
-    mostrarCarrito ();
-    }
-
-
+    mostrarCarrito();
+}
 
 function mostrarCarrito (){
     
@@ -97,7 +108,6 @@ function mostrarCarrito (){
         carrito = JSON.parse(localStorage.getItem(carrito)) || [];
         mostrarCarrito();
     });
-
        
     espacioCarrito.innerHTML = "";
 
