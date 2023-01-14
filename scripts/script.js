@@ -48,6 +48,9 @@ else
     mostrarProductos();
 }
 
+fetch("../scripts/datos.json")
+    .then((resp) => console.log(resp));
+
 // Carrito DOM
 
 cart.addEventListener("click", irACarrito);
