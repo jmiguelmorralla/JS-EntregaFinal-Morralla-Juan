@@ -41,8 +41,8 @@ let carrito = [];
 // }
 
 const mostrarProductos = async () => {
-    const respuesta = await fetch("../scripts/datos.json")
-    const datos = await respuesta.json()
+    const respuesta = await fetch("../scripts/datos.json");
+    const datos = await respuesta.json();
     
     datos.forEach((productosMostrados)=>{
             const div = document.createElement("div")
@@ -177,10 +177,64 @@ function mostrarCarrito (){
 botonVaciarCarrito.addEventListener("click", limpiarCarrito);
 
 function limpiarCarrito() {
-    carrito.length = [];
-    localStorage.removeItem(carrito);
-    mostrarCarrito();
+    swal({
+        title: "¿Estás segur@?",
+        text: "Eliminarás todos los elementos del carrito.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Tu carrito está vacío.", {
+            icon: "success",
+          });
+          carrito.length = [];
+          localStorage.removeItem(carrito);
+          mostrarCarrito();
+        } else {
+          swal("Tus productos siguen en el carrito.");
+        }
+      });
+};
 
+botonConfirmarCompra.addEventListener("click", confirmarCompra);
+
+function confirmarCompra() {
+    swal({
+        title: "¿Estás segur@?",
+        text: "Estás a punto de confirmar tu compra.",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willBuy) => {
+        if (willBuy) {
+          swal("Esperá mientras te redirigimos al sitio de envíos y pagos.", {
+            icon: "success",
+            buttons: false,
+          });
+          Toastify({
+            text: "Ya casi terminás tu compra. Solo te falta confirmar la forma de envío y pago.",
+            duration: 10000,
+            destination: "../pages/pagos.html",
+            newWindow: true,
+            close: true,
+            gravity: "bottom",
+            position: "right",
+            stopOnFocus: true,
+            style: {
+                background: "linear-gradient(to right, #fc8803, #fc3d03)",
+            },
+            onClick: function(){}
+          }).showToast();
+
+          setTimeout(() => {(location.href = "../pages/pagos.html")}, 5000);
+
+        } else {
+          swal("Podés seguir agregando productos a tu carrito.");
+        }
+      });
 };
 
 let carritoJSON = JSON.parse(localStorage.getItem(carrito));
