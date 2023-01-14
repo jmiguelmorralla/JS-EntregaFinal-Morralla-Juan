@@ -26,5 +26,8 @@ const bloques = new crearProducto ("004", "Bloques", "Tak Tak","Argentina", "Mad
 const torre = new crearProducto ("005", "Torre", "Juguetes Olsen", "Argentina", "Madera", 1, 2900, true);
 const luna = new crearProducto ("006", "Luna", "Confiture", "Argentina", "Madera", 1, 5900, true);
 
+
+
+
 const listadoProductos = [balancin, arcoiris, casita, bloques, torre, luna];
 
