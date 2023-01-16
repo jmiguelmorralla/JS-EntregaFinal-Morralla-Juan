@@ -18,14 +18,11 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 document.addEventListener("DOMContentLoaded", bootstrap);
 
 function bootstrap() {
-  agregarEventosCarrito();
-  agregarEventosFormulario();
+  agregarEventosCarrito()
+  agregarEventosFormulario()
   cargarProductos()
   .then((datos) => {
       mostrarProductos(datos);
-    })
-    .then(() => {
-        agregarEventosCard();
     });
   mostrarCarrito();
 }
@@ -107,33 +104,30 @@ function mostrarProductos(datos) {
                     <h6 id="cantidad">${productosMostrados.cantidad}</h6>
                     <h5 class="card-title">${productosMostrados.nombre}</h5>
                     <p class="card-text">${productosMostrados.precio}</p>
-                    <a href="#" class="btn btn-warning">Agregar</a>
+                    <button class="btn btn-warning" id="botonAgregarProducto${productosMostrados.id}">Agregar</button>
                 </div>
             </div>`;
 
     contenedorProductos.append(div);
+
+    const botonAgregarProducto = document.querySelector("#botonAgregarProducto" + productosMostrados.id);
+
+    botonAgregarProducto.addEventListener("click", (e) => {
+    agregarProductoCarrito(e.target.parentElement);
+    irACarrito();
+    })
+    
   });
 }
-
-function agregarEventosCard() {
-  const catalogoProducto = document.querySelectorAll(".card");
-
-  catalogoProducto.forEach((card) => {
-    card.addEventListener("click", (e) => {
-      agregarProductoCarrito(e.target.parentElement);
-    });
-  });
-}
-
-// cargarProductos().then(mostrarProductos).then(agregarEventosCard);
 
 function irACarrito() {
   location.hash = "espacioCarrito";
 }
 
 function agregarProductoCarrito(producto) {
+  console.log(producto.id)
   const existe = carrito.some(item => item.id === producto.id);
-  console.log(existe)
+  
   if (existe) {
     producto.cantidad++;
   } else {
@@ -151,8 +145,8 @@ function agregarProductoCarrito(producto) {
 }
 
 function eliminarProducto(producto) {
-  const item = carrito.find((temp) => temp.id === producto.id);
-  carrito = carrito.filter((temp) => temp.id !== producto.id);
+  const item = carrito.find(temp => temp.id === producto.id);
+  carrito = carrito.filter(temp => temp.id !== producto.id);
   mostrarCarrito();
 }
 
