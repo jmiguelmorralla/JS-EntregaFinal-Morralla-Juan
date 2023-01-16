@@ -104,43 +104,47 @@ function mostrarProductos(datos) {
                     <h6 id="cantidad">${productosMostrados.cantidad}</h6>
                     <h5 class="card-title">${productosMostrados.nombre}</h5>
                     <p class="card-text">${productosMostrados.precio}</p>
-                    <button class="btn btn-warning" id="botonAgregarProducto${productosMostrados.id}">Agregar</button>
+                    <button class="btn btn-agregar btn-warning" id="${productosMostrados.id}">Agregar</button>
                 </div>
             </div>`;
 
     contenedorProductos.append(div);
 
-    const botonAgregarProducto = document.querySelector("#botonAgregarProducto" + productosMostrados.id);
-
-    botonAgregarProducto.addEventListener("click", (e) => {
-    agregarProductoCarrito(e.target.parentElement);
-    irACarrito();
-    })
     
   });
+
+  const botonAgregarProducto = document.querySelectorAll(".btn-agregar");
+
+  botonAgregarProducto.forEach(btn => btn.addEventListener("click", (e) => {
+  agregarProductoCarrito(e.target.id, datos);
+  irACarrito();
+  }))
 }
 
 function irACarrito() {
   location.hash = "espacioCarrito";
 }
 
-function agregarProductoCarrito(producto) {
-  console.log(producto.id)
-  const existe = carrito.some(item => item.id === producto.id);
+function agregarProductoCarrito(id, producto) {
+
+  const productoAgregar = producto.find(p => p.id === id);
+  console.log(carrito)
+  
+  const existe = carrito.some(item => item.id === id);
+  
+  console.log(existe)
   
   if (existe) {
-    producto.cantidad++;
+    const prod = carrito.map (prod => {
+      if (prod.id === id) {
+        prod.cantidad ++
+      }
+    })
   } else {
-
-  const infoProductoCatalogo = {
-    id: producto.querySelector("#id").textContent,
-    nombre: producto.querySelector(".card-title").textContent,
-    precio: producto.querySelector(".card-text").textContent,
-    cantidad: producto.querySelector("#cantidad").textContent,
+    carrito = [...carrito, productoAgregar];
+    
   };
-  
-  carrito = [...carrito, infoProductoCatalogo];
-};
+
   mostrarCarrito();
 }
 
@@ -199,16 +203,6 @@ function mostrarCarrito() {
       eliminarProducto(producto);
     });
   });
-
-  // espacioCarrito.innerHTML = `
-  //   <table class="table">
-  //       <thead>
-            
-  //       </thead>
-  //       <tbody>
-  //         ${contenidoTabla}
-  //       </tbody>
-  //   </table>`
 
   /* NUMERO EN BOTÓN CARRITO */
 
@@ -281,23 +275,3 @@ function confirmarCompra() {
     }
   });
 }
-
-/* REVISAR, NO FUNCIONA
-
-const revisarCarritoVacio = () => {
-
-    if (carritoJSON.length){
-        const botonVaciarCarrito = document.createElement("div");
-        botonVaciarCarrito.innerHTML = `<button class="btn btn-danger" id="botonVaciarCarrito">Vaciar Carrito</button>`;
-        totalCarrito.appendChild(botonVaciarCarrito);
-    } 
-    else {
-        const mensajeVacio = document.createElement("div");
-        mensajeVacio.innerHTML =`<h5>Su carrito se encuentra vacío.</h5>`;
-        totalCarrito.appendChild(mensajeVacio);
-    };
-};
-
-revisarCarritoVacio(); 
-
-*/
