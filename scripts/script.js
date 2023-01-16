@@ -132,11 +132,11 @@ function irACarrito() {
 }
 
 function agregarProductoCarrito(producto) {
-  // const existe = carrito.some(item => item.id === producto.id);
-
-  // if (existe) {
-  //     producto.cantidad++;
-  // } else {
+  const existe = carrito.some(item => item.id === producto.id);
+  console.log(existe)
+  if (existe) {
+    producto.cantidad++;
+  } else {
 
   const infoProductoCatalogo = {
     id: producto.querySelector("#id").textContent,
@@ -144,9 +144,9 @@ function agregarProductoCarrito(producto) {
     precio: producto.querySelector(".card-text").textContent,
     cantidad: producto.querySelector("#cantidad").textContent,
   };
-
+  
   carrito = [...carrito, infoProductoCatalogo];
-
+};
   mostrarCarrito();
 }
 
