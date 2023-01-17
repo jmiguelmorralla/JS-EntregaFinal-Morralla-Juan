@@ -96,7 +96,7 @@ function agregarEventosFormulario() {
 // CARGAR LOS PRODUCTOS DEL .JSON
 
 const cargarProductos = async () => {
-  const respuesta = await fetch("../scripts/datos.json");
+  const respuesta = await fetch("./scripts/datos.json");
   const datos = await respuesta.json();
   return datos;
 }
@@ -307,7 +307,7 @@ function confirmarCompra() {
       
 
       setTimeout(() => {
-        location.href = "../pages/pagos.html";
+        location.href = "./pages/pagos.html";
       }, 3500);
     } else {
       swal("Podés seguir agregando productos a tu carrito.");
