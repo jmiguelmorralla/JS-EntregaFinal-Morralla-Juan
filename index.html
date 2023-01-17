@@ -19,7 +19,7 @@
   </nav>
   <!-- DATOS DE CLIENTE -->
   <div class="container" id="divFormulario">
-    <div class="container">
+    <div class="container" id="divCliente">
       <h2 id="datosCliente">Datos del Cliente</h2>
       <form id="formulario" action="/redireccion">
         <div class="mb-3">
@@ -32,7 +32,7 @@
         </div>
         <div class="mb-3">
           <label class="form-label">Correo Electrónico</label>
-          <input type="email" class="form-control" id="mail">
+          <input type="email" class="form-control" id="mail" required="true">
         </div>
         <div class="mb-3">
           <input class="form-check-input" type="checkbox" value="" id="iva">
@@ -42,19 +42,21 @@
         </div>
         <button type="submit" class="btn btn-outline-info">Enviar datos</button>
       </form>
+        <!-- ESPACIO CLIENTE -->
+      <div class="container" id="espacioCliente"> 
+        <button type="submit" class="btn btn-outline-info" id="botonCliente">Mostrar cliente</button>
+      </div>
     </div>
+  </div>
+
+
     
   <!-- CONTENEDOR DE PRODUCTOS -->
   <div class="contenedor-productos mb-3">
   </div>
 
-  <!-- ESPACIO CLIENTE -->
-  <div class="container" id="espacioCliente"> 
-    <button type="submit" class="btn btn-outline-info" id="botonCliente">Mostrar cliente</button>
-  </div>
-
   <!-- ESPACIO CARRITO -->
-  <div id="divCarrito">
+  <div id="divCarrito" class="container">
     <h2 id="carrito">Carrito</h2>
 
     <div class="container" id="espacioCarrito">
@@ -78,7 +80,7 @@
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="./script.js"></script>
 </body>
-<footer>
+<footer id="footer">
 
 
 

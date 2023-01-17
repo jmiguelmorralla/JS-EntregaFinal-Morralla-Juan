@@ -38,6 +38,7 @@ function agregarEventosCarrito() {
   botonConfirmarCompra.addEventListener("click", confirmarCompra);
 }
 
+
 // EVENTOS DEL FORMULARIO
 
 function agregarEventosFormulario() {
@@ -49,6 +50,8 @@ function agregarEventosFormulario() {
     localStorage.setItem("Apellido", apellido.value);
     localStorage.setItem("Correo", mail.value);
     localStorage.setItem("RI", iva.checked);
+    formulario.style.display = ("none");
+    espacioCliente.style.display = ("block");
   }
 
   //Función constructora de cliente
@@ -88,7 +91,7 @@ function agregarEventosFormulario() {
 
     botonOcultar.addEventListener("click", function (e) {
       e.preventDefault(e);
-      espacioCliente.innerHTML = `Se ocultaron los datos de cliente.<br><br>`;
+      espacioCliente.innerHTML = `Se ocultaron los datos de cliente.`;
     });
   });
 }
@@ -129,7 +132,8 @@ function mostrarProductos(datos) {
 
   botonAgregarProducto.forEach(btn => btn.addEventListener("click", (e) => {
   agregarProductoCarrito(e.target.id, datos);
-  irACarrito();
+
+  
   Toastify({
     text: "Agregaste un hermoso producto a tu carrito.",
     duration: 3000,
@@ -150,7 +154,7 @@ function mostrarProductos(datos) {
 // IR AL CARRITO
 
 function irACarrito() {
-  location.hash = "espacioCarrito";
+  location.hash = "footer";
 }
 
 // AGREGAR LOS PRODUCTOS AL CARRITO
@@ -255,13 +259,11 @@ function mostrarCarrito() {
   localStorage.setItem("carrito", JSON.stringify(carrito));
 
   if (carrito.length === 0) {
-    datosCliente.style.display="block";
-    formulario.style.display="block";
+
     divCarrito.style.display="none";
 
   } else {
-    datosCliente.style.display="none";
-    formulario.style.display="none";
+
     divCarrito.style.display="block";
   }
 }
