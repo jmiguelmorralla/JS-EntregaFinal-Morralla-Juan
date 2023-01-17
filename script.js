@@ -96,7 +96,7 @@ function agregarEventosFormulario() {
 // CARGAR LOS PRODUCTOS DEL .JSON
 
 const cargarProductos = async () => {
-  const respuesta = await fetch("../scripts/datos.json");
+  const respuesta = await fetch("./datos.json");
   const datos = await respuesta.json();
   return datos;
 }
