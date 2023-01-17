@@ -7,7 +7,8 @@
        "material":"Madera",
        "cantidad":1,
        "precio":12000,
-       "disponibilidad":true
+       "disponibilidad":true,
+       "img":"img/balancin.png"
     },
     {
        "id":"002",
@@ -17,7 +18,8 @@
        "material":"Madera",
        "cantidad":1,
        "precio":7000,
-       "disponibilidad":true
+       "disponibilidad":true,
+       "img":"img/arcoiris.png"
     },
     {
        "id":"003",
@@ -27,7 +29,8 @@
        "material":"Madera",
        "cantidad":1,
        "precio":4500,
-       "disponibilidad":true
+       "disponibilidad":true,
+       "img":"img/casita.png"
     },
     {
        "id":"004",
@@ -37,7 +40,8 @@
        "material":"Madera",
        "cantidad":1,
        "precio":3000,
-       "disponibilidad":true
+       "disponibilidad":true,
+       "img":"img/bloques.png"
     },
     {
        "id":"005",
@@ -47,7 +51,8 @@
        "material":"Madera",
        "cantidad":1,
        "precio":2900,
-       "disponibilidad":true
+       "disponibilidad":true,
+       "img":"img/torre.jpg"
     },
     {
        "id":"006",
@@ -57,6 +62,7 @@
        "material":"Madera",
        "cantidad":1,
        "precio":5900,
-       "disponibilidad":true
+       "disponibilidad":true,
+       "img":"img/luna.png"
     }
  ]

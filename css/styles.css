@@ -1,8 +1,15 @@
 @charset "UTF-8";
 
+
+
 .imagen {
   max-height: 150px;
   max-width: 150px;
+}
+
+.imagenCatalogo {
+  height: 180px;
+  width: 180px;
 }
 
 #formasDePago {
@@ -12016,6 +12023,11 @@ select.form-control[multiple] {
   align-items: center;
   align-content: center;
   padding: 5rem;
+  padding-bottom: 2rem;
+}
+
+#espacioCliente {
+  margin: 2rem;
 }
 
 .container{
